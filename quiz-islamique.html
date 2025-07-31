@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz Islamique</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #03B5AA, #023436);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #quiz-container {
+      background: #fff;
+      color: #023436;
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .option {
+      background: #f4f4f4;
+      padding: 12px 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .option:hover {
+      background: #ddd;
+    }
+
+    #next-btn, #home-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #03B5AA;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-right: 10px;
+    }
+
+    #next-btn:hover, #home-btn:hover {
+      background: #029b96;
+    }
+
+    #score {
+      font-size: 1.4em;
+      margin-top: 30px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: flex-start;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="quiz-container">
+    <h2 id="question-title">Chargement...</h2>
+    <div id="options-container"></div>
+    <div class="btn-container">
+      <button id="home-btn" onclick="window.location.href='index.html'">🏠 Accueil</button>
+      <button id="next-btn" style="display: none;">Suivant</button>
+    </div>
+    <div id="score"></div>
+  </div>
+
+  <script>
+    const quiz = {
+      title: "Quiz Islamique",
+      questions: [
+        {
+          question: "Combien de piliers y a-t-il en Islam ?",
+          options: ["3", "4", "5", "6"],
+          answer: "5"
+        },
+        {
+          question: "Quel est le premier prophète de l'Islam ?",
+          options: ["Moussa", "Noé", "Adam", "Ibrahim"],
+          answer: "Adam"
+        },
+        {
+          question: "Quel est le livre sacré de l'Islam ?",
+          options: ["La Torah", "La Bible", "Le Coran", "L'Évangile"],
+          answer: "Le Coran"
+        },
+        {
+          question: "Combien de fois les musulmans prient-ils par jour ?",
+          options: ["2", "3", "4", "5"],
+          answer: "5"
+        },
+        {
+          question: "Quel est le mois du jeûne en Islam ?",
+          options: ["Rajab", "Ramadan", "Shawwal", "Dhoul Hijja"],
+          answer: "Ramadan"
+        },
+        {
+          question: "Quel est le dernier prophète de l'Islam ?",
+          options: ["Issa", "Moussa", "Mohammed", "Ibrahim"],
+          answer: "Mohammed"
+        },
+        {
+          question: "Où est né le Prophète Mohammed (saws) ?",
+          options: ["Médine", "La Mecque", "Jérusalem", "Bagdad"],
+          answer: "La Mecque"
+        },
+        {
+          question: "Combien de chapitres (sourates) y a-t-il dans le Coran ?",
+          options: ["114", "99", "123", "108"],
+          answer: "114"
+        },
+        {
+          question: "Quelle ville les musulmans visitent-ils pour le Hajj ?",
+          options: ["Damas", "Médine", "La Mecque", "Le Caire"],
+          answer: "La Mecque"
+        },
+        {
+          question: "Quelle est la direction de la prière (Qibla) ?",
+          options: ["Jérusalem", "La Mecque", "Médine", "Le mont Sinaï"],
+          answer: "La Mecque"
+        }
+      ]
+    };
+
+    const questionTitle = document.getElementById('question-title');
+    const optionsContainer = document.getElementById('options-container');
+    const nextBtn = document.getElementById('next-btn');
+    const scoreDisplay = document.getElementById('score');
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    function loadQuestion() {
+      const q = quiz.questions[currentQuestion];
+      questionTitle.textContent = q.question;
+      optionsContainer.innerHTML = '';
+      q.options.forEach(opt => {
+        const div = document.createElement('div');
+        div.className = 'option';
+        div.textContent = opt;
+        div.onclick = () => selectOption(div, opt === q.answer);
+        optionsContainer.appendChild(div);
+      });
+      nextBtn.style.display = 'none';
+    }
+
+    function selectOption(element, isCorrect) {
+      const options = document.querySelectorAll('.option');
+      options.forEach(opt => opt.onclick = null);
+      element.style.backgroundColor = isCorrect ? '#C7F464' : '#FF6B6B';
+      if (isCorrect) score++;
+      nextBtn.style.display = 'inline-block';
+    }
+
+    nextBtn.onclick = () => {
+      currentQuestion++;
+      if (currentQuestion < quiz.questions.length) {
+        loadQuestion();
+      } else {
+        showScore();
+      }
+    };
+
+    function showScore() {
+      questionTitle.textContent = `${quiz.title} terminé !`;
+      optionsContainer.innerHTML = '';
+      nextBtn.style.display = 'none';
+      scoreDisplay.innerHTML = `🕌 Vous avez obtenu <strong>${score}/${quiz.questions.length}</strong> bonnes réponses.`;
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

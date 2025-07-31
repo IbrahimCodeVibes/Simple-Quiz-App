@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz App</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #03B5AA, #023436);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .quiz-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .quiz-card {
+      background: #fff;
+      color: #023436;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s, background-color 0.3s;
+      text-decoration: none;
+    }
+
+    .quiz-card:hover {
+      transform: translateY(-5px);
+      background-color: #f0f0f0;
+    }
+
+    .quiz-card h2 {
+      margin-bottom: 10px;
+      font-size: 1.3em;
+    }
+
+    .quiz-card p {
+      font-size: 0.9em;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎓 Bienvenue sur QuizMaster</h1>
+
+  <div class="quiz-list">
+    <a class="quiz-card" href="quiz-medecine.html">
+      <h2>🩺 Quiz Médecine</h2>
+      <p>Testez vos connaissances en anatomie et pathologie.</p>
+    </a>
+    <a class="quiz-card" href="quiz-histoire.html">
+      <h2>📜 Quiz Histoire</h2>
+      <p>Voyagez dans le passé et défiez votre mémoire.</p>
+    </a>
+    <a class="quiz-card" href="quiz-science.html">
+      <h2>🔬 Quiz Science</h2>
+      <p>Des questions de physique, chimie et biologie.</p>
+    </a>
+    <a class="quiz-card" href="quiz-islamique.html">
+      <h2>🕌 Quiz Islamique</h2>
+      <p>Connaissances religieuses et culture musulmane.</p>
+    </a>
+  </div>
+</body>
+</html>
