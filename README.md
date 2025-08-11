@@ -69,3 +69,4 @@ For educational apps and student tools in Algeria and beyond 🇩🇿
 ## 📜 License
 
 Open-source project .
+Follow Me On IG !
